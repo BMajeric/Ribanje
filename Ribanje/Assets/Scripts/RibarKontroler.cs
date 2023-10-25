@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
@@ -9,6 +11,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     float horizontal;
     float vertical;
+    Vector3 playerOrijentacija;
 
     public float brzinaKretanja;
     
@@ -23,7 +26,21 @@ public class NewBehaviourScript : MonoBehaviour
     {
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical"); 
+        playerOrijentacija = transform.localScale;
+
+        if (Input.GetAxisRaw("Horizontal") < 0)
+            playerOrijentacija.x = math.abs(transform.localScale.x) * -1;
+        else
+            playerOrijentacija.x = math.abs(transform.localScale.x);
+
+        transform.localScale = playerOrijentacija;
         animator.SetFloat("Run", Mathf.Abs(horizontal));
+
+        if (Input.GetKeyDown(KeyCode.X))
+        animator.SetBool("Attack", true);
+
+        if (Input.GetKeyUp(KeyCode.X))
+        animator.SetBool("Attack", false);
 
     }
 
