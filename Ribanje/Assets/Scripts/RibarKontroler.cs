@@ -28,13 +28,14 @@ public class NewBehaviourScript : MonoBehaviour
         vertical = Input.GetAxisRaw("Vertical"); 
         playerOrijentacija = transform.localScale;
 
-        if (Input.GetAxisRaw("Horizontal") < 0)
+        if (horizontal < 0)
+            playerOrijentacija.x = math.abs(transform.localScale.x); 
+        if (horizontal > 0)
             playerOrijentacija.x = math.abs(transform.localScale.x) * -1;
-        else
-            playerOrijentacija.x = math.abs(transform.localScale.x);
 
         transform.localScale = playerOrijentacija;
         animator.SetFloat("Run", Mathf.Abs(horizontal));
+        animator.SetFloat("RunUp", vertical);
 
         if (Input.GetKeyDown(KeyCode.X))
         animator.SetBool("Attack", true);
