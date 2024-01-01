@@ -60,16 +60,16 @@ public class NewBehaviourScript : MonoBehaviour
     void checkMovement(){
 
         horizontal = Input.GetAxisRaw("Horizontal");
-            vertical = Input.GetAxisRaw("Vertical"); 
-            playerOrijentacija = transform.localScale;
+        vertical = Input.GetAxisRaw("Vertical"); 
+        playerOrijentacija = transform.localScale;
 
-            if (horizontal < 0)
-                playerOrijentacija.x = math.abs(transform.localScale.x); 
-            if (horizontal > 0)
-                playerOrijentacija.x = math.abs(transform.localScale.x) * -1;
+        if (horizontal < 0)
+            playerOrijentacija.x = math.abs(transform.localScale.x); 
+        if (horizontal > 0)
+            playerOrijentacija.x = math.abs(transform.localScale.x) * -1;
 
-            transform.localScale = playerOrijentacija;
-            animator.SetFloat("Run", Mathf.Abs(horizontal));
-            animator.SetFloat("RunUp", vertical);
+        transform.localScale = playerOrijentacija;
+        animator.SetFloat("Run", Mathf.Abs(horizontal));
+        animator.SetFloat("RunUp", vertical);
     }
 }
