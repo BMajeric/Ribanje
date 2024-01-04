@@ -8,26 +8,46 @@ public class Dialogue : MonoBehaviour
 {
     public TextMeshProUGUI textComponent;
     public string[] dialogueLines;
-    private int index; // index for tracking the currently displayed dialogue line
     public float textSpeed;
-    
+    public Canvas canvas;
+
+    // currently displayed dialogue line
+    private int index;
+    private GameObject talkableObject;
+    private TreeCollisionDialogue treeCollisionDialogue;
 
     // Start is called before the first frame update
     void Start()
     {
+        /*
         textComponent.text = string.Empty;
+        canvas.enabled = true;
+        StartDialogue();
+        */ 
+    }
+
+    private void OnEnable()
+    {
+        if (talkableObject == null)
+        {
+            talkableObject = GameObject.Find("DrvoDialogue");
+            treeCollisionDialogue = talkableObject.GetComponent<TreeCollisionDialogue>();
+        }
+
+        treeCollisionDialogue.SetDialogueInProgress(true);
+        textComponent.text = string.Empty;
+        canvas.enabled = true;
+
         StartDialogue();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0))
+
+        if (Input.GetButtonDown("Dialogue") && textComponent.text == dialogueLines[index])
         {
-            if (textComponent.text == dialogueLines[index])
-            {
-                NextLine();
-            }
+            NextLine();
         }
     }
 
@@ -58,6 +78,9 @@ public class Dialogue : MonoBehaviour
         else
         {
             gameObject.SetActive(false);
+            canvas.enabled = false;
+            //Thread.Sleep(200);
+            treeCollisionDialogue.SetDialogueInProgress(false);
         }
     }
 }

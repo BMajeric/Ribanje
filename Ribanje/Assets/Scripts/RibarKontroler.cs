@@ -17,6 +17,9 @@ public class NewBehaviourScript : MonoBehaviour
     public float brzinaKretanja;
 
     bool canMove = true;
+
+    // dialogue testing
+    public ScriptReference dialogueScript;
     
     // Start is called before the first frame update
     void Start()
