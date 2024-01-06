@@ -27,6 +27,7 @@ public class ChargeEnemeyController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         target = GameObject.FindWithTag("Player").transform;
         InvokeRepeating("SetChargeDirection", 0.0f, 1.75f);
+        InvokeRepeating("StopEnemy", 1.65f, 1.75f);
     }
 
     private void Update()
@@ -45,6 +46,12 @@ public class ChargeEnemeyController : MonoBehaviour
     {
         chargeDirection = target.position - transform.position;
         chargeDirection.Normalize();
+        movement = chargeDirection;
+    }
+
+    private void StopEnemy()
+    {
+        chargeDirection = Vector3.zero;
         movement = chargeDirection;
     }
 

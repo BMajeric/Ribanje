@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectionDistance: 10
-  chargingSpeed: 9
+  chargingSpeed: 12
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 256
