@@ -8,8 +8,7 @@ public class Dialogue : MonoBehaviour
 {
     public TextMeshProUGUI textComponent;
     public string[] dialogueLines;
-    public float textSpeed;
-    public Canvas canvas;
+    public float textDelay;
 
     // currently displayed dialogue line
     private int index;
@@ -36,7 +35,6 @@ public class Dialogue : MonoBehaviour
 
         treeCollisionDialogue.SetDialogueInProgress(true);
         textComponent.text = string.Empty;
-        canvas.enabled = true;
 
         StartDialogue();
     }
@@ -63,7 +61,7 @@ public class Dialogue : MonoBehaviour
         foreach (char c in dialogueLines[index].ToCharArray())
         {
             textComponent.text += c;
-            yield return new WaitForSeconds(textSpeed);
+            yield return new WaitForSeconds(textDelay);
         }
     }
 
@@ -78,8 +76,6 @@ public class Dialogue : MonoBehaviour
         else
         {
             gameObject.SetActive(false);
-            canvas.enabled = false;
-            //Thread.Sleep(200);
             treeCollisionDialogue.SetDialogueInProgress(false);
         }
     }
