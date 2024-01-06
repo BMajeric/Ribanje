@@ -29,11 +29,24 @@ public class RangedEnemyController : MonoBehaviour
     private bool inChaseRange;      // Start chasing the player
     private bool inStopRange;       // Stop movement
     private bool inSpaceRange;        // Start running from the player
+    
+    [Header("Shooting Variables")]
+
+    private Transform firingPoint;
+
+    [SerializeField]
+    private float firingRate;
+    private float timeToFire;
+
+    [SerializeField]
+    private GameObject projectilePrefab;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         target = GameObject.FindWithTag("Player").transform;
+        timeToFire = 0f;
+        firingPoint = gameObject.GetComponentInChildren<Transform>();
     }
 
     private void Update()
@@ -48,14 +61,17 @@ public class RangedEnemyController : MonoBehaviour
         if (inSpaceRange)
         {
             movement = -movingDirection;
+            Shoot();
         } 
         else if (inStopRange)
         {
             movement = Vector2.zero;
+            Shoot();
         } 
         else if (inChaseRange)
         {
             movement = movingDirection;
+            Shoot();
         }
     }
 
@@ -64,6 +80,19 @@ public class RangedEnemyController : MonoBehaviour
         if (inChaseRange || inStopRange || inSpaceRange)
         {
             MoveEnemy(movement);
+        }
+    }
+
+    private void Shoot()
+    {
+        if (timeToFire <= 0)
+        {
+            Instantiate(projectilePrefab, firingPoint.position, firingPoint.rotation);
+            timeToFire = firingRate;
+        }
+        else
+        {
+            timeToFire -= Time.deltaTime;
         }
     }
 
