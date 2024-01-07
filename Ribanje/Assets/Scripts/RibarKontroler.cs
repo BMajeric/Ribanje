@@ -5,10 +5,11 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class RibarKontroler : MonoBehaviour
 {
     Rigidbody2D body;
     public Animator animator;
+    public HealthController health;
 
     float horizontal;
     float vertical;
@@ -22,6 +23,7 @@ public class NewBehaviourScript : MonoBehaviour
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
+        health = GetComponent<HealthController>();
     }
 
     // Update is called once per frame
@@ -33,6 +35,8 @@ public class NewBehaviourScript : MonoBehaviour
         if(canMove){
             checkMovement();
         }
+
+        testHealthController();
 
     }
 
@@ -72,4 +76,55 @@ public class NewBehaviourScript : MonoBehaviour
             animator.SetFloat("Run", Mathf.Abs(horizontal));
             animator.SetFloat("RunUp", vertical);
     }
+
+    public void gameOver() { }
+
+    public void takeDamage(int amount)
+    {
+        health.deductHearts(amount);
+        if (health.currentHealth <= 0)
+        {
+            gameOver();
+        }
+    }
+
+    public void heal(int amount)
+    {
+        health.addHearts(amount);
+    }
+
+    public void decreaseMaxHealth(int amount)
+    {
+        health.deductMaxHearts(amount);
+    }
+
+    public void increaseMaxHealth(int amount)
+    {
+        health.addMaxHearts(amount);
+    }
+
+    void testHealthController()
+    {
+        if (Input.GetKeyUp(KeyCode.O))
+        {
+            takeDamage(1);
+        }
+
+        if (Input.GetKeyUp(KeyCode.P))
+        {
+            heal(1);
+        }
+
+        if (Input.GetKeyUp(KeyCode.K))
+        {
+            decreaseMaxHealth(2);
+        }
+
+        if (Input.GetKeyUp(KeyCode.L))
+        {
+            increaseMaxHealth(1);
+        }
+
+    }
+
 }

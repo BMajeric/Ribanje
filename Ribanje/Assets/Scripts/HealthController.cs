@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Unity.Mathematics;
 
 public class HealthController : MonoBehaviour
 {
@@ -50,10 +51,17 @@ public class HealthController : MonoBehaviour
     {
         if (currentHealth > 0) currentHealth -= amount;
     }
-
     public void addMaxHearts(int amount)
     {
-        if (maxHealth < HEALTH_CAP) maxHealth += amount;
+        maxHealth = math.min(HEALTH_CAP, maxHealth + amount);
+        currentHealth = math.min(HEALTH_CAP, currentHealth + amount);
     }
+
+    public void deductMaxHearts(int amount)
+    {
+        maxHealth = math.max(1, maxHealth - amount);
+        currentHealth = math.min(maxHealth, currentHealth);
+    }
+    
 }
 
