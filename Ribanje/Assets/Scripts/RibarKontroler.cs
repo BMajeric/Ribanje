@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
@@ -77,7 +78,10 @@ public class RibarKontroler : MonoBehaviour
             animator.SetFloat("RunUp", vertical);
     }
 
-    public void gameOver() { }
+    public void gameOver() 
+    {
+        Debug.Log("GAME OVER!");
+    }
 
     public void takeDamage(int amount)
     {
