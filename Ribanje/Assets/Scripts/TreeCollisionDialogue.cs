@@ -6,11 +6,11 @@ public class TreeCollisionDialogue : MonoBehaviour
 {
     // reference to dialogue to play
     public GameObject dialogue;
-
-    private Collider2D treeCollider;
     // dialogue is enabled when player is in close range
-    private bool dialogueEnabled;     
+    private bool dialogueEnabled;
     private bool dialogueInProgress;
+    private Collider2D treeCollider;
+    
 
     // Start is called before the first frame update
     void Start()
