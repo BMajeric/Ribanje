@@ -15,6 +15,10 @@ public class Dialogue : MonoBehaviour
     private GameObject talkableObject;
     private TreeCollisionDialogue treeCollisionDialogue;
 
+
+    private GameObject playerGO;
+    private RibarKontroler ribarKontroler;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +35,11 @@ public class Dialogue : MonoBehaviour
         {
             talkableObject = GameObject.Find("DrvoDialogue");
             treeCollisionDialogue = talkableObject.GetComponent<TreeCollisionDialogue>();
+        }
+        if (playerGO == null)
+        {
+            playerGO = GameObject.Find("Player Ribar");
+            ribarKontroler = playerGO.GetComponent<RibarKontroler>();
         }
 
         treeCollisionDialogue.SetDialogueInProgress(true);
@@ -77,6 +86,7 @@ public class Dialogue : MonoBehaviour
         {
             gameObject.SetActive(false);
             treeCollisionDialogue.SetDialogueInProgress(false);
+            ribarKontroler.SetMovement(true);
         }
     }
 }
