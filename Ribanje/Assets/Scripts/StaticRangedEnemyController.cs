@@ -13,7 +13,10 @@ public class StaticRangedEnemyController : MonoBehaviour
     private LayerMask playerLayerMask;
 
     private Rigidbody2D rb;
+    private Animator anim;
     private Transform target;
+
+    private Vector3 direction;
 
     private bool inShootRange;
     
@@ -31,6 +34,7 @@ public class StaticRangedEnemyController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         target = GameObject.FindWithTag("Player").transform;
         timeToFire = 0f;
         firingPoint = gameObject.GetComponentInChildren<Transform>();
@@ -38,12 +42,24 @@ public class StaticRangedEnemyController : MonoBehaviour
 
     private void Update()
     {
+        anim.SetBool("isShooting", inShootRange);
         inShootRange = Physics2D.OverlapCircle(transform.position, shootDistance, playerLayerMask);
+
+        direction = target.position - transform.position;
 
         if (inShootRange)
         {
+            if (direction.x < 0)
+            {
+                transform.eulerAngles = new Vector3(0, 0, 0);
+            }
+            else
+            {
+                transform.eulerAngles = new Vector3(0, 180, 0);
+            }
             Shoot();
         }
+        Debug.Log(target.position - transform.position);
     }
 
     private void Shoot()

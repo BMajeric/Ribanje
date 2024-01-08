@@ -21,6 +21,7 @@ public class RangedEnemyController : MonoBehaviour
     private LayerMask playerLayerMask;
 
     private Rigidbody2D rb;
+    private Animator anim;
     private Transform target;
 
     private Vector3 movingDirection;
@@ -44,6 +45,7 @@ public class RangedEnemyController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         target = GameObject.FindWithTag("Player").transform;
         timeToFire = 0f;
         firingPoint = gameObject.GetComponentInChildren<Transform>();
@@ -60,16 +62,22 @@ public class RangedEnemyController : MonoBehaviour
 
         if (inSpaceRange)
         {
+            anim.SetBool("isMoving", true);
+            anim.SetBool("isStanding", false);
             movement = -movingDirection;
             Shoot();
         } 
         else if (inStopRange)
         {
+            anim.SetBool("isMoving", false);
+            anim.SetBool("isStanding", true);
             movement = Vector2.zero;
             Shoot();
         } 
         else if (inChaseRange)
         {
+            anim.SetBool("isMoving", true);
+            anim.SetBool("isStanding", false);
             movement = movingDirection;
             Shoot();
         }
@@ -79,6 +87,14 @@ public class RangedEnemyController : MonoBehaviour
     {
         if (inChaseRange || inStopRange || inSpaceRange)
         {
+            if (movingDirection.x < 0)
+            {
+                transform.eulerAngles = new Vector3(0, 0, 0);
+            }
+            else
+            {
+                transform.eulerAngles = new Vector3(0, 180, 0);
+            }
             MoveEnemy(movement);
         }
     }

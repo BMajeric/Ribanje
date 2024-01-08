@@ -16,6 +16,7 @@ public class ChargeEnemeyController : MonoBehaviour
 
     private Rigidbody2D rb;
     private Transform target;
+    private Animator anim;
 
     private Vector3 chargeDirection;
     private Vector2 movement;
@@ -25,6 +26,7 @@ public class ChargeEnemeyController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         target = GameObject.FindWithTag("Player").transform;
         InvokeRepeating("SetChargeDirection", 0.0f, 1.75f);
         InvokeRepeating("StopEnemy", 1.65f, 1.75f);
@@ -32,6 +34,7 @@ public class ChargeEnemeyController : MonoBehaviour
 
     private void Update()
     {
+        anim.SetBool("isCharging", inChaseRange);
         inChaseRange = Physics2D.OverlapCircle(transform.position, detectionDistance, playerLayerMask);
     }
 
@@ -39,6 +42,14 @@ public class ChargeEnemeyController : MonoBehaviour
     {
         if (inChaseRange)
         {
+            if (chargeDirection.x < 0)
+            {
+                transform.eulerAngles = new Vector3(0, 0, 0);
+            }
+            else
+            {
+                transform.eulerAngles = new Vector3(0, 180, 0);
+            }
             MoveEnemy(movement);
         }
     }

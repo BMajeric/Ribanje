@@ -10,6 +10,7 @@ public class CrabEnemyController : MonoBehaviour
     private float movementSpeed;
 
     private Rigidbody2D rb;
+    private Animator anim;
 
     private float timeToChangeDirection;
     private int direction;
@@ -21,6 +22,7 @@ public class CrabEnemyController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         timeToChangeDirection = Random.Range(1, 3);
         direction = (int) Mathf.Round(Random.Range(-1, 1));
         if (direction == 0)
