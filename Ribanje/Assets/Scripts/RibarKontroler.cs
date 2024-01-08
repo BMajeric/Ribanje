@@ -19,6 +19,9 @@ public class RibarKontroler : MonoBehaviour
     public float brzinaKretanja;
 
     bool canMove = true;
+
+    // flags to mark progress
+    public bool bKeyItem1PickedUp = false;
     
     // Start is called before the first frame update
     void Start()
@@ -33,7 +36,7 @@ public class RibarKontroler : MonoBehaviour
 
         checkAttack();
 
-        if(canMove){
+        if (canMove) {
             checkMovement();
         }
 
@@ -65,17 +68,17 @@ public class RibarKontroler : MonoBehaviour
     void checkMovement(){
 
         horizontal = Input.GetAxisRaw("Horizontal");
-            vertical = Input.GetAxisRaw("Vertical"); 
-            playerOrijentacija = transform.localScale;
+        vertical = Input.GetAxisRaw("Vertical"); 
+        playerOrijentacija = transform.localScale;
 
-            if (horizontal < 0)
-                playerOrijentacija.x = math.abs(transform.localScale.x); 
-            if (horizontal > 0)
-                playerOrijentacija.x = math.abs(transform.localScale.x) * -1;
-
-            transform.localScale = playerOrijentacija;
-            animator.SetFloat("Run", Mathf.Abs(horizontal));
-            animator.SetFloat("RunUp", vertical);
+        if (horizontal < 0)
+            playerOrijentacija.x = math.abs(transform.localScale.x); 
+        if (horizontal > 0)
+            playerOrijentacija.x = math.abs(transform.localScale.x) * -1;
+        
+        transform.localScale = playerOrijentacija;
+        animator.SetFloat("Run", Mathf.Abs(horizontal));
+        animator.SetFloat("RunUp", vertical);
     }
 
     public void gameOver() 
@@ -129,6 +132,16 @@ public class RibarKontroler : MonoBehaviour
             increaseMaxHealth(1);
         }
 
+    }
+
+    public void SetMovement(bool canMove)
+    {
+        this.canMove = canMove;
+    }
+
+    public void PickUpKeyItem1()
+    {
+        bKeyItem1PickedUp = true;
     }
 
 }
