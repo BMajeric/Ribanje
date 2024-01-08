@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class SingleDialogueScript : MonoBehaviour
 {
-    // reference to dialogue to play
-    public GameObject dialogue;
+    // reference to dialogue(s) to play
+    public GameObject[] dialogues;
+    private int dialogueIndex = 0;
+
     // dialogue is enabled when player is in close range
     private bool dialogueEnabled;
     private bool dialogueInProgress;
@@ -24,13 +26,6 @@ public class SingleDialogueScript : MonoBehaviour
         dialogueInProgress = false;
         playerGO = GameObject.Find("Player Ribar");
         ribarKontroler = playerGO.GetComponent<RibarKontroler>();
-        if (playerGO != null)
-        {
-            Debug.Log("player pronaden");
-        } else
-        {
-            Debug.Log("player nije pronaden");
-        }
     }
 
     // Update is called once per frame
@@ -38,7 +33,7 @@ public class SingleDialogueScript : MonoBehaviour
     {
         if (Input.GetButtonDown("Dialogue") && dialogueEnabled && !dialogueInProgress)
         {
-            dialogue.SetActive(true);
+            dialogues[dialogueIndex].SetActive(true);
             ribarKontroler.SetMovement(false);
         }
     }
@@ -65,5 +60,10 @@ public class SingleDialogueScript : MonoBehaviour
     public void SetDialogueInProgress(bool isInProgress)
     {
         dialogueInProgress = isInProgress;
+    }
+
+    public void SetNextDialogue()
+    {
+        dialogueIndex++;
     }
 }

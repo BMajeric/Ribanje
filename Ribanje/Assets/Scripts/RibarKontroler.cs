@@ -18,6 +18,9 @@ public class RibarKontroler : MonoBehaviour
     public float brzinaKretanja;
 
     bool canMove = true;
+
+    // flags to mark progress
+    public bool bKeyItem1PickedUp = false;
     
     // Start is called before the first frame update
     void Start()
@@ -130,6 +133,11 @@ public class RibarKontroler : MonoBehaviour
     public void SetMovement(bool canMove)
     {
         this.canMove = canMove;
+    }
+
+    public void PickUpKeyItem1()
+    {
+        bKeyItem1PickedUp = true;
     }
 
 }
