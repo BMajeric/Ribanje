@@ -6,7 +6,7 @@ public class SingleDialogueScript : MonoBehaviour
 {
     // reference to dialogue(s) to play
     public GameObject[] dialogues;
-    private int dialogueIndex = 0;
+    public int dialogueIndex = 0;
 
     // dialogue is enabled when player is in close range
     private bool dialogueEnabled;
