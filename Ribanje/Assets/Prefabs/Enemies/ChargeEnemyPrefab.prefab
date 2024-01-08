@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6578103554232473243}
   - component: {fileID: 169817480818679808}
   - component: {fileID: 6298967364361199369}
+  - component: {fileID: 6215942126446170535}
   m_Layer: 9
   m_Name: ChargeEnemyPrefab
   m_TagString: Enemy
@@ -73,8 +74,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1232959533
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 1815101088, guid: 12e42d7ef28f7854e841c628eb04139c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

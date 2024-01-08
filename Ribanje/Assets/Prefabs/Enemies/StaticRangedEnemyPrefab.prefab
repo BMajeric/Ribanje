@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 5304942813031976794}
   - component: {fileID: 511500997792639841}
   - component: {fileID: 3826888221323673065}
+  - component: {fileID: -155264717192863962}
   m_Layer: 9
   m_Name: StaticRangedEnemyPrefab
   m_TagString: Enemy
@@ -105,8 +106,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1232959533
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1230397860, guid: feb2b84174fd0364faa36075e16d6773, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
