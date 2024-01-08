@@ -29,4 +29,8 @@ public class Projectile : MonoBehaviour
     {
         rb.velocity = direction * speed;
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Destroy(gameObject);
+    }
 }
