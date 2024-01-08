@@ -6,12 +6,19 @@ using Unity.Mathematics;
 
 public class HealthController : MonoBehaviour
 {
-    private const int HEALTH_CAP = 10;
 
+    [Header("Health")]
+    [SerializeField] private const int HEALTH_CAP = 10;
     public int currentHealth;
     public int maxHealth;
     public Image[] hearts;
     public Sprite heart;
+
+
+    [Header("iFrames")]
+    [SerializeField] private float iFramesDuration = 3;
+    [SerializeField] private int numOfFlashes;
+    private SpriteRenderer spriteRenderer;
 
     void Update()
     {
@@ -42,6 +49,11 @@ public class HealthController : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
     public void addHearts(int amount)
     {
         if (currentHealth < maxHealth) currentHealth += amount;
@@ -61,6 +73,21 @@ public class HealthController : MonoBehaviour
     {
         maxHealth = math.max(1, maxHealth - amount);
         currentHealth = math.min(maxHealth, currentHealth);
+    }
+
+    public IEnumerator Invulnerability()
+    {
+        Physics2D.IgnoreLayerCollision(8, 9, true);
+
+        for (int i = 0; i < numOfFlashes; i++)
+        {
+            spriteRenderer.color = new Color(1, 0, 0, 0.5f);
+            yield return new WaitForSeconds(iFramesDuration / (2*numOfFlashes));
+            spriteRenderer.color = Color.white;
+            yield return new WaitForSeconds(iFramesDuration / (2*numOfFlashes));
+        }    
+
+        Physics2D.IgnoreLayerCollision(8, 9, false);
     }
     
 }

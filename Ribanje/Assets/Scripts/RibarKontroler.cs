@@ -10,7 +10,7 @@ public class RibarKontroler : MonoBehaviour
 {
     Rigidbody2D body;
     public Animator animator;
-    public HealthController health;
+    private HealthController health;
 
     float horizontal;
     float vertical;
@@ -93,6 +93,7 @@ public class RibarKontroler : MonoBehaviour
         {
             gameOver();
         }
+        StartCoroutine(health.Invulnerability());
     }
 
     public void heal(int amount)
