@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 2127464319956550311}
   - component: {fileID: 8617276054244610932}
   - component: {fileID: 8052159678381646586}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RangedEnemyPrefab
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -190,7 +190,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8895151486636195328}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FiringPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

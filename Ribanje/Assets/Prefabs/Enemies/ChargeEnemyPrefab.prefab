@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 6578103554232473243}
   - component: {fileID: 169817480818679808}
   - component: {fileID: 6298967364361199369}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ChargeEnemyPrefab
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

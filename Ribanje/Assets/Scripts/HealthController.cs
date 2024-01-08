@@ -17,7 +17,7 @@ public class HealthController : MonoBehaviour
 
     [Header("iFrames")]
     [SerializeField] private float iFramesDuration = 3;
-    [SerializeField] private int numOfFlashes;
+    [SerializeField] private int numOfFlashes = 10;
     private SpriteRenderer spriteRenderer;
 
     void Update()
