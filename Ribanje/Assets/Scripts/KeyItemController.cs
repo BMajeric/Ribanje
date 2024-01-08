@@ -4,7 +4,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
 
-public class NewBehaviourScript : MonoBehaviour
+// script which destroys KeyItem on pickup and destroys obstacles which prevent progress
+// this component goes on KeyItemGO
+public class KeyItemController : MonoBehaviour
 {
     // access to player progress flags
     private GameObject playerGO;
@@ -31,7 +33,7 @@ public class NewBehaviourScript : MonoBehaviour
         GameObject.Find("KeyItem1Barrier1").SetActive(false);
         // pomakni pocetnog ribara sa strane i promijeni mu dijalog
         GameObject.Find("PocetniRibar").transform.position += new Vector3(8, 8, 0);
-        GameObject.Find("PocetniRibar").GetComponent<SingleDialogueScript>().SetNextDialogue();
+        GameObject.Find("PocetniRibar").GetComponent<NPCDialogueController>().SetNextDialogue();
         gameObject.SetActive(false);
     }
 }

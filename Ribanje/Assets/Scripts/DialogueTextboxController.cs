@@ -4,45 +4,46 @@ using UnityEngine;
 using TMPro;
 using System.Threading;
 
-public class Dialogue : MonoBehaviour
+// script for displaying a dialogue
+// this component goes on dialogue textbox object (Canvas > Dialogues > DialogueTextboxGO)
+public class DialogueTextboxController : MonoBehaviour
 {
     public TextMeshProUGUI textComponent;
-    public string[] dialogueLines;
-    public float textDelay;
 
+    // all the lines in current dialogue, each will be displayed in new textbox
+    public string[] dialogueLines;
     // currently displayed dialogue line
     private int index;
-    private GameObject talkableObject;
-    private TreeCollisionDialogue treeCollisionDialogue;
 
+    // delay between printing out chars from dialogueLines strings
+    public float textDelay;
 
+    // reference to the object (NPC) which is talking
+    public GameObject talkableObject;
+    private NPCDialogueController dialogueController;
+
+    // access to player to disable movement during dialogue
     private GameObject playerGO;
     private RibarKontroler ribarKontroler;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        /*
-        textComponent.text = string.Empty;
-        canvas.enabled = true;
-        StartDialogue();
-        */ 
-    }
+    void Start() {}
 
+    // this script will be started via .enabled(true)
     private void OnEnable()
     {
-        if (talkableObject == null)
-        {
-            talkableObject = GameObject.Find("DrvoDialogue");
-            treeCollisionDialogue = talkableObject.GetComponent<TreeCollisionDialogue>();
-        }
+        Debug.Log("dialogue startan");
         if (playerGO == null)
         {
             playerGO = GameObject.Find("Player Ribar");
             ribarKontroler = playerGO.GetComponent<RibarKontroler>();
+            Debug.Log("player pronaden");
         }
-
-        treeCollisionDialogue.SetDialogueInProgress(true);
+        if (dialogueController == null)
+        {
+            dialogueController = talkableObject.GetComponent<NPCDialogueController>();
+            Debug.Log("pronaden npc skripta");
+        }
         textComponent.text = string.Empty;
 
         StartDialogue();
@@ -51,7 +52,6 @@ public class Dialogue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (Input.GetButtonDown("Dialogue") && textComponent.text == dialogueLines[index])
         {
             NextLine();
@@ -84,9 +84,13 @@ public class Dialogue : MonoBehaviour
         }
         else
         {
-            gameObject.SetActive(false);
-            treeCollisionDialogue.SetDialogueInProgress(false);
+            Debug.Log("zavrsavamo razgovor");
+            dialogueController.SetDialogueInProgress(false);
+            Debug.Log("SetDialogueInProgress(false) dovrsen");
             ribarKontroler.SetMovement(true);
+            Debug.Log("ribar.SetMovement(true) dovrsen");
+            gameObject.SetActive(false);
+            Debug.Log("GO disablean");
         }
     }
 }
