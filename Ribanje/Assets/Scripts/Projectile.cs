@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [Range(0, 5)]
+    [Range(0, 15)]
     [SerializeField]
-    private float speed = 1.5f;
+    private float speed = 7f;
 
     [Range(1, 5)]
     [SerializeField]
@@ -21,6 +21,7 @@ public class Projectile : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         target = GameObject.FindWithTag("Player").transform;
         direction = target.position - transform.position;
+        direction.Normalize();
         Destroy(gameObject, lifeTime);
     }
 
