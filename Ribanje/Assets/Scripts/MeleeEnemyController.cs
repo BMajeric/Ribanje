@@ -15,6 +15,7 @@ public class MeleeEnemyController : MonoBehaviour
     private LayerMask playerLayerMask;
 
     private Rigidbody2D rb;
+    private Animator anim;
     private Transform target;
 
     private Vector3 movingDirection;
@@ -25,11 +26,14 @@ public class MeleeEnemyController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         target = GameObject.FindWithTag("Player").transform;
     }
 
     private void Update()
     {
+        anim.SetBool("isChasing", inChaseRange);
+
         inChaseRange = Physics2D.OverlapCircle(transform.position, chaseDistance, playerLayerMask);
 
         movingDirection = target.position - transform.position;
@@ -41,6 +45,14 @@ public class MeleeEnemyController : MonoBehaviour
     {
         if (inChaseRange)
         {
+            if (movingDirection.x >= 0)
+            {
+                transform.eulerAngles = new Vector3(0, 0, 0);
+            }
+            else
+            {
+                transform.eulerAngles = new Vector3(0, 180, 0);
+            }
             MoveEnemy(movement);
         }
     }
