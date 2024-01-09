@@ -22,6 +22,9 @@ public class RibarKontroler : MonoBehaviour
 
     // flags to mark progress
     public bool bKeyItem1PickedUp = false;
+
+    // Attack hitbox
+    public GameObject stickAttack;
     
     // Start is called before the first frame update
     void Start()
@@ -50,18 +53,28 @@ public class RibarKontroler : MonoBehaviour
 
     }
 
-    void checkAttack(){
+    void checkAttack()
+    {
 
-        if (Input.GetKeyDown(KeyCode.X)){
-            animator.SetBool("Attack", true);
-            canMove = false;
-            horizontal = 0;
-            vertical = 0;
-        }
-        
-        if (Input.GetKeyUp(KeyCode.X)){
-            animator.SetBool("Attack", false);
-            canMove = true;
+        //if (Input.GetKeyDown(KeyCode.X))
+        //{
+        //    animator.SetBool("Attack", true);
+        //    canMove = false;
+        //    horizontal = 0;
+        //    vertical = 0;
+
+        //    Debug.Log(animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
+        //}
+
+        //if (Input.GetKeyUp(KeyCode.X))
+        //{
+        //    animator.SetBool("Attack", false);
+        //    canMove = true;
+        //}
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            StartCoroutine(Attack());
         }
     }
 
@@ -72,7 +85,7 @@ public class RibarKontroler : MonoBehaviour
         playerOrijentacija = transform.localScale;
 
         if (horizontal < 0)
-            playerOrijentacija.x = math.abs(transform.localScale.x); 
+            playerOrijentacija.x = math.abs(transform.localScale.x);
         if (horizontal > 0)
             playerOrijentacija.x = math.abs(transform.localScale.x) * -1;
         
@@ -80,6 +93,7 @@ public class RibarKontroler : MonoBehaviour
         animator.SetFloat("Run", Mathf.Abs(horizontal));
         animator.SetFloat("RunUp", vertical);
     }
+
 
     public void gameOver() 
     {
@@ -145,4 +159,60 @@ public class RibarKontroler : MonoBehaviour
         bKeyItem1PickedUp = true;
     }
 
+    public IEnumerator Attack()
+    {
+        // Start attack animation
+        animator.SetBool("Attack", true);
+        canMove = false;
+        horizontal = 0;
+        vertical = 0;
+
+        animator.SetFloat("Run", 0);
+        animator.SetFloat("RunUp", 0);
+
+        // Determine attack direction
+        var direction = animator.GetCurrentAnimatorClipInfo(0)[0].clip.name;
+        Debug.Log(direction);
+        var attackPosition = transform.position;
+        var duration = 1f;
+        if (direction == "Slash up" || direction == "Run up ribar2" || direction == "Idle back ribar2")
+        {
+            attackPosition.y += 0.6f;
+            duration = 0.683f;
+        } else if (direction == "Slash down" || direction == "Run down ribar2" || direction == "Idle front ribar2")
+        {
+            attackPosition.y -= 0.7f;
+            duration = 0.683f;
+        } else if (direction == "Slash side" || direction == "Run side ribar2" || direction == "Idle side ribar2")
+        {
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                attackPosition.y += 0.6f;
+                duration = 0.683f;
+            } else if (Input.GetKeyDown(KeyCode.S)) 
+            {
+                attackPosition.y -= 0.7f;
+                duration = 0.683f;
+            } else
+            {
+                attackPosition.x -= 0.6f * math.sign(transform.localScale.x);
+                duration = 0.517f;
+            }
+        }
+        stickAttack.transform.position = attackPosition;
+
+
+        // Enable attack collider
+        stickAttack.GetComponent<Collider2D>().enabled = true;
+
+        // Wait for animation to finish
+        yield return new WaitForSeconds(duration);
+
+        // Disable attack collider
+        stickAttack.GetComponent<Collider2D>().enabled = false;
+
+        // End attack animation
+        animator.SetBool("Attack", false);
+        canMove = true;
+    }
 }

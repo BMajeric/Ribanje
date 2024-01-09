@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2278215095302549243}
   - component: {fileID: 7041848304668199576}
   - component: {fileID: 4055415092324506703}
+  - component: {fileID: 8815095520116661592}
   m_Layer: 9
   m_Name: CrabEnemyPrefab
   m_TagString: Enemy

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3442492823887770987}
   - component: {fileID: 303041167548346841}
   - component: {fileID: 492682137626633303}
+  - component: {fileID: 1139550206981136863}
   m_Layer: 9
   m_Name: MeleeEnemyPrefab
   m_TagString: Enemy
