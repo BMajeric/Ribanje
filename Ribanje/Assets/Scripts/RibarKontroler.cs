@@ -10,7 +10,7 @@ public class RibarKontroler : MonoBehaviour
 {
     Rigidbody2D body;
     public Animator animator;
-    private HealthController health;
+    public HealthController health;
 
     float horizontal;
     float vertical;

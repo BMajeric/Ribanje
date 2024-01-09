@@ -40,24 +40,28 @@ public class KeyItemController : MonoBehaviour
                 GameObject.Find("KeyItem1Barrier1").SetActive(false);
                 GameObject.Find("KeyItem1Barrier2").SetActive(false);
                 GameObject.Find("PocetniRibar").GetComponent<NPCDialogueController>().SetNextDialogue();
+                ribarKontroler.heal(ribarKontroler.health.maxHealth - ribarKontroler.health.currentHealth);
                 gameObject.SetActive(false);
             }
             if (gameObject.name == "KeyItem2")
             {
                 ribarKontroler.PickUpKeyItem2();
                 npcDialogueController.SetNextDialogue();
+                ribarKontroler.heal(ribarKontroler.health.maxHealth - ribarKontroler.health.currentHealth);
                 gameObject.SetActive(false);
             }
             if (gameObject.name == "KeyItem3")
             {
                 ribarKontroler.PickUpKeyItem3();
                 npcDialogueController.SetNextDialogue();
+                ribarKontroler.heal(ribarKontroler.health.maxHealth - ribarKontroler.health.currentHealth);
                 gameObject.SetActive(false);
             }
             if (gameObject.name == "KeyItem4")
             {
                 ribarKontroler.PickUpKeyItem4();
                 npcDialogueController.SetNextDialogue();
+                ribarKontroler.heal(ribarKontroler.health.maxHealth - ribarKontroler.health.currentHealth);
                 gameObject.SetActive(false);
             }
 
