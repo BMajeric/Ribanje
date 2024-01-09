@@ -22,6 +22,9 @@ public class RibarKontroler : MonoBehaviour
 
     // flags to mark progress
     public bool bKeyItem1PickedUp = false;
+    public bool bKeyItem2PickedUp = false;
+    public bool bKeyItem3PickedUp = false;
+    public bool bKeyItem4PickedUp = false;
 
     // Attack hitbox
     public GameObject stickAttack;
@@ -157,6 +160,18 @@ public class RibarKontroler : MonoBehaviour
     public void PickUpKeyItem1()
     {
         bKeyItem1PickedUp = true;
+    }
+    public void PickUpKeyItem2()
+    {
+        bKeyItem2PickedUp = true;
+    }
+    public void PickUpKeyItem3()
+    {
+        bKeyItem3PickedUp = true;
+    }
+    public void PickUpKeyItem4()
+    {
+        bKeyItem4PickedUp = true;
     }
 
     public IEnumerator Attack()

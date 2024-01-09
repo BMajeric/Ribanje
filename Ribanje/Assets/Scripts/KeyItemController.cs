@@ -12,11 +12,16 @@ public class KeyItemController : MonoBehaviour
     private GameObject playerGO;
     private RibarKontroler ribarKontroler;
 
+    private GameObject promatrac3;
+    private NPCDialogueController npcDialogueController;
+
     // Start is called before the first frame update
     void Start()
     {
         playerGO = GameObject.Find("Player Ribar");
         ribarKontroler = playerGO.GetComponent<RibarKontroler>();
+        promatrac3 = GameObject.Find("Promatrac3");
+        npcDialogueController = promatrac3.GetComponent<NPCDialogueController>();
     }
 
     // Update is called once per frame
@@ -35,6 +40,24 @@ public class KeyItemController : MonoBehaviour
                 GameObject.Find("KeyItem1Barrier1").SetActive(false);
                 GameObject.Find("KeyItem1Barrier2").SetActive(false);
                 GameObject.Find("PocetniRibar").GetComponent<NPCDialogueController>().SetNextDialogue();
+                gameObject.SetActive(false);
+            }
+            if (gameObject.name == "KeyItem2")
+            {
+                ribarKontroler.PickUpKeyItem2();
+                npcDialogueController.SetNextDialogue();
+                gameObject.SetActive(false);
+            }
+            if (gameObject.name == "KeyItem3")
+            {
+                ribarKontroler.PickUpKeyItem3();
+                npcDialogueController.SetNextDialogue();
+                gameObject.SetActive(false);
+            }
+            if (gameObject.name == "KeyItem4")
+            {
+                ribarKontroler.PickUpKeyItem4();
+                npcDialogueController.SetNextDialogue();
                 gameObject.SetActive(false);
             }
 
