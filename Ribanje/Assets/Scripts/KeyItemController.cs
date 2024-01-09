@@ -27,13 +27,19 @@ public class KeyItemController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("KeyItem1 collidean");
-        ribarKontroler.PickUpKeyItem1();
-        // unisti prepreku
-        GameObject.Find("KeyItem1Barrier1").SetActive(false);
-        // pomakni pocetnog ribara sa strane i promijeni mu dijalog
-        GameObject.Find("PocetniRibar").transform.position += new Vector3(8, 8, 0);
-        GameObject.Find("PocetniRibar").GetComponent<NPCDialogueController>().SetNextDialogue();
-        gameObject.SetActive(false);
+        if (collision.gameObject.tag == "Player")
+        {
+            if (gameObject.name == "KeyItem1")
+            {
+                ribarKontroler.PickUpKeyItem1();
+                GameObject.Find("KeyItem1Barrier1").SetActive(false);
+                GameObject.Find("KeyItem1Barrier2").SetActive(false);
+                GameObject.Find("PocetniRibar").GetComponent<NPCDialogueController>().SetNextDialogue();
+                gameObject.SetActive(false);
+            }
+
+        }
+            
+        
     }
 }
