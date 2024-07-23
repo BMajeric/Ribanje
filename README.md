@@ -1,5 +1,7 @@
 # Ribanje
 Kratka open-world 2D igrica napravljena u Unityu u sklopu projekta za FER.
+
+Download: https://7ljudi.itch.io/ribanje
 ![pocetniskrin](https://github.com/user-attachments/assets/860dfd28-f1e0-42ab-8c68-6e29f77059c5)
 
 ## Opis
