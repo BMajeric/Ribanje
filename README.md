@@ -31,7 +31,7 @@ Igra je zamišljena kao open-world avantura gdje Ribar skuplja predmete s kojima
 - Hit detection
 - Asseti za tilemap
 - Fali tutorial i upute igraču
-- Nije baš jasno gdje treba ići
+- Bolje upute na mapi
 
 ## Za implementaciju
 - Otok Brač
