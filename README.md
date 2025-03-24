@@ -1,44 +1,42 @@
 # Ribanje
-Kratka open-world 2D igrica napravljena u Unityu u sklopu projekta za FER.
+A short open-world 2D video game made in Unity as part of a subject at FER (Faculty of Electrical engeneering and computing).
 
 Download: https://7ljudi.itch.io/ribanje
 ![pocetniskrin](https://github.com/user-attachments/assets/860dfd28-f1e0-42ab-8c68-6e29f77059c5)
 
-## Opis
-Ribanje je kratka 2D igrica napravljena u Unity Game Engineu inspirirana hrvatskom obalom i putopisom Petra Hektorovića *Ribanje i ribarsko prigovaranje*.
-Igrač je jedan od dva ribara i njegov cilj je odvesti pisca Petra Hektorovića na otok Šoltu kao i u samom putopisu. Igrač putuje po Hvaru, Braču i Šolti i rješava zavrzlame, priča sa mještanima i bori se protiv opasne prirode, ovaca, živog kamenja i povijesnih hrvatskih neprijatelja Mlečana i Turaka.
-Igra je zamišljena kao open-world avantura gdje Ribar skuplja predmete s kojima interaktira sa svijetom i s kojima može unaprijediti svoje borbene i ribarske moći.
+## Description
+"Ribanje" is a short 2D video game made in the Unity Game Engine insoired by the Croatian coastline and the travelogue of Petar Hektorović called *Ribanje i ribarsko prigovaranje*. 
+The player is a fisherman and their goal is to take the writer Petar Hektorović to the Croatian island Šolta as described in the travelogue. The player traverses the Croatian islands of Hvar, Brač and Šolta all while fighting the dangerous nature and wildlife. 
+The game is intended as an open-world adventure where the Fisherman collects items, using them to interact with the overworld or upgrade their fighting and fishing capabilities.
 
 ## Tehnologije
 - C#
 - Unity
 - HLSL
-- 2D Sprite Editori
+- 2D Sprite Editors
   
-## Implementirano
-- Kretanje Ribara
-- Combat sistem
-- Većina otoka Hvara sa povijesnim lokacijama, napravljeno pomoću tilemapa
-- Prijelaz između ekrana
-- Različite vrste neprijatelja
-- Interakcija sa objektima
-- Dijalog sa mještanima
-- Health sustav
-- Main menu
+## Implemented
+- Player Movement
+- Combat System
+- Most of the island Hvar created using tilemaps
+- Screen transitions
+- Different enemies
+- Object interaction
+- NPC dialogue
+- Health system
+- Main Menu
   
-## Problemi
-- Ribar šteka/problem sa sprite animacijom
-- Hit detection
-- Asseti za tilemap
-- Fali tutorial i upute igraču
-- Bolje upute na mapi
+## Problems
+- The fisherman has some animation issues
+- Hit Detection
+- Tilemap Assets
+- No tutorial or instructions
+- Subpar map instructions
 
-## Za implementaciju
-- Otok Brač
-- Otok Šolta
-- Ostatak Hvara
-- Podvodna mlaćenje arena
-- Pecanje
-- Kretanje po moru sa barkom
-- Upgrade sistem
+## Future Work
+- The islands of Brač and Šolta
+- Finish the island of Hvar
+- Implement Fishing
+- Implement movement on the sea using a ship
+- Weapon upgrade system
 
